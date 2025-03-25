@@ -7,7 +7,7 @@ A theorem prover consists of three components:
 
 1. The Reasoning Engine ([derivation_engine.pro](./derivation_engine.pro)): This core component produces the equational proofs.
 2. A Term Rewriting Ruleset (see, for example, [tiny_ruleset.pro](./tiny_ruleset.pro)): This is a Prolog file that specifies the rewriting rules to be used.
-3. The User Interface ([prover_ui.pro](./tiny_ruleset.pro)): This receives input from the user and then formats and prints the resulting proofs.
+3. The User Interface ([prover_ui.pro](./prover_ui.pro)): This receives input from the user and then formats and prints the resulting proofs.
 
 The theorem prover architecture is depicted below:
 
