@@ -1,0 +1,255 @@
+?-consult('derivation_engine.pro').
+true. 
+ 
+?-consult('prop_equivalence.pro').
+true. 
+ 
+?-consult('prover_ui.pro').
+true. 
+
+?-prove([a,->,b], [[~,b],->,[~,a]], 7).
+THEOREM: (a -> b) = ((~ b) -> (~ a))
+PROOF:
+(a -> b)
+= (Definition of ->)
+((~ a) or b)
+= (Commutative)
+(b or (~ a))
+= (Double Negation)
+((~ (~ b)) or (~ a))
+= (Definition of ->)
+((~ b) -> (~ a))
+---
+QED
+
+?-prove([a,->,[b,->,c]], [[a, and, b],->,c], 5).
+THEOREM: (a -> (b -> c)) = ((a and b) -> c)
+PROOF:
+(a -> (b -> c))
+= (Definition of ->)
+((~ a) or (b -> c))
+= (Definition of ->)
+((~ a) or ((~ b) or c))
+= (Associative)
+(((~ a) or (~ b)) or c)
+= (DeMorgan)
+((~ (a and b)) or c)
+= (Definition of ->)
+((a and b) -> c)
+---
+QED
+
+?-prove([a,->,[b,->,c]], [b,->,[a,->,c]], 7).
+THEOREM: (a -> (b -> c)) = (b -> (a -> c))
+PROOF:
+(a -> (b -> c))
+= (Definition of ->)
+((~ a) or (b -> c))
+= (Commutative)
+((b -> c) or (~ a))
+= (Definition of ->)
+(((~ b) or c) or (~ a))
+= (Associative)
+((~ b) or (c or (~ a)))
+= (Definition of ->)
+(b -> (c or (~ a)))
+= (Commutative)
+(b -> ((~ a) or c))
+= (Definition of ->)
+(b -> (a -> c))
+---
+QED
+
+?-prove([[a,->,b], and, [a, or, b]], b, 7).
+THEOREM: ((a -> b) and (a or b)) = b
+PROOF:
+((a -> b) and (a or b))
+= (Commutative)
+((a or b) and (a -> b))
+= (Commutative)
+((b or a) and (a -> b))
+= (Definition of ->)
+((b or a) and ((~ a) or b))
+= (Commutative)
+((b or a) and (b or (~ a)))
+= (Distributive)
+(b or (a and (~ a)))
+= (Domination)
+b
+---
+QED
+
+?-prove([[a, and, b],->,c], [a,->,[b,->,c]], 6).
+THEOREM: ((a and b) -> c) = (a -> (b -> c))
+PROOF:
+((a and b) -> c)
+= (Definition of ->)
+((~ (a and b)) or c)
+= (DeMorgan)
+(((~ a) or (~ b)) or c)
+= (Associative)
+((~ a) or ((~ b) or c))
+= (Definition of ->)
+(a -> ((~ b) or c))
+= (Definition of ->)
+(a -> (b -> c))
+---
+QED
+
+?-prove([a,->,[b, and, c]], [[a,->,b], and, [a,->,c]], 6).
+THEOREM: (a -> (b and c)) = ((a -> b) and (a -> c))
+PROOF:
+(a -> (b and c))
+= (Definition of ->)
+((~ a) or (b and c))
+= (Distributive)
+(((~ a) or b) and ((~ a) or c))
+= (Commutative)
+(((~ a) or c) and ((~ a) or b))
+= (Definition of ->)
+((a -> c) and ((~ a) or b))
+= (Commutative)
+(((~ a) or b) and (a -> c))
+= (Definition of ->)
+((a -> b) and (a -> c))
+---
+QED
+
+?-prove([a,->,[a, or ,b]], true, 6).
+THEOREM: (a -> (a or b)) = true
+PROOF:
+(a -> (a or b))
+= (Definition of ->)
+((~ a) or (a or b))
+= (Commutative)
+((a or b) or (~ a))
+= (Commutative)
+((b or a) or (~ a))
+= (Associative)
+(b or (a or (~ a)))
+= (Excluded Middle)
+(b or true)
+= (Domination)
+true
+---
+QED
+
+?-prove([[a, and ,b],->,a], true, 7).
+THEOREM: ((a and b) -> a) = true
+PROOF:
+((a and b) -> a)
+= (Definition of ->)
+((~ (a and b)) or a)
+= (Commutative)
+(a or (~ (a and b)))
+= (DeMorgan)
+(a or ((~ a) or (~ b)))
+= (Associative)
+((a or (~ a)) or (~ b))
+= (Commutative)
+((~ b) or (a or (~ a)))
+= (Excluded Middle)
+((~ b) or true)
+= (Domination)
+true
+---
+QED
+
+?-prove([[[a, or ,b], and, [~,a]],->,b], true, 6).
+THEOREM: (((a or b) and (~ a)) -> b) = true
+PROOF:
+(((a or b) and (~ a)) -> b)
+= (Definition of ->)
+((~ ((a or b) and (~ a))) or b)
+= (DeMorgan)
+(((~ (a or b)) or (~ (~ a))) or b)
+= (Associative)
+((~ (a or b)) or ((~ (~ a)) or b))
+= (Commutative)
+(((~ (~ a)) or b) or (~ (a or b)))
+= (Double Negation)
+((a or b) or (~ (a or b)))
+= (Excluded Middle)
+true
+---
+QED
+
+?-prove([a,->,[b,->,a]], true, 6).
+THEOREM: (a -> (b -> a)) = true
+PROOF:
+(a -> (b -> a))
+= (Definition of ->)
+((~ a) or (b -> a))
+= (Commutative)
+((b -> a) or (~ a))
+= (Definition of ->)
+(((~ b) or a) or (~ a))
+= (Associative)
+((~ b) or (a or (~ a)))
+= (Excluded Middle)
+((~ b) or true)
+= (Domination)
+true
+---
+QED
+
+?-prove([[[a,->,b], and ,a],->,b], true, 7).
+THEOREM: (((a -> b) and a) -> b) = true
+PROOF:
+(((a -> b) and a) -> b)
+= (Definition of ->)
+((~ ((a -> b) and a)) or b)
+= (DeMorgan)
+(((~ (a -> b)) or (~ a)) or b)
+= (Associative)
+((~ (a -> b)) or ((~ a) or b))
+= (Commutative)
+(((~ a) or b) or (~ (a -> b)))
+= (Definition of ->)
+((a -> b) or (~ (a -> b)))
+= (Excluded Middle)
+true
+---
+QED
+
+?-prove([a,->,[b,->,[a, and, b]]], true, 6).
+THEOREM: (a -> (b -> (a and b))) = true
+PROOF:
+(a -> (b -> (a and b)))
+= (Definition of ->)
+((~ a) or (b -> (a and b)))
+= (Definition of ->)
+((~ a) or ((~ b) or (a and b)))
+= (Associative)
+(((~ a) or (~ b)) or (a and b))
+= (Commutative)
+((a and b) or ((~ a) or (~ b)))
+= (DeMorgan)
+((a and b) or (~ (a and b)))
+= (Excluded Middle)
+true
+---
+QED
+
+?-prove([[[a,->,b], and, [~,b]],->,[~,a]], true, 8).
+THEOREM: (((a -> b) and (~ b)) -> (~ a)) = true
+PROOF:
+(((a -> b) and (~ b)) -> (~ a))
+= (Definition of ->)
+((~ ((a -> b) and (~ b))) or (~ a))
+= (Commutative)
+((~ a) or (~ ((a -> b) and (~ b))))
+= (DeMorgan)
+((~ a) or ((~ (a -> b)) or (~ (~ b))))
+= (Commutative)
+((~ a) or ((~ (~ b)) or (~ (a -> b))))
+= (Associative)
+(((~ a) or (~ (~ b))) or (~ (a -> b)))
+= (Definition of ->)
+((a -> (~ (~ b))) or (~ (a -> b)))
+= (Double Negation)
+((a -> b) or (~ (a -> b)))
+= (Excluded Middle)
+true
+---
+QED
