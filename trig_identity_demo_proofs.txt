@@ -1,0 +1,254 @@
+?-consult('derivation_engine.pro').
+true. 
+
+?-consult('math_util.pro').
+true. 
+ 
+?-consult('trig.pro').
+true. 
+ 
+?-consult('prover_ui.pro').
+true. 
+
+?-prove([cos(x),*,sec(x)],1, 4).
+THEOREM: (cos(x) * sec(x)) = 1
+PROOF:
+(cos(x) * sec(x))
+= (Commutative)
+(sec(x) * cos(x))
+= (By Def. of SEC)
+(sec(x) / sec(x))
+= (Simplify
+1
+---
+QED
+
+?-prove([sin(x),*,sec(x)], tan(x), 4).
+THEOREM: (sin(x) * sec(x)) = tan(x)
+PROOF:
+(sin(x) * sec(x))
+= (Def. SEC).
+(sin(x) * (1 / cos(x)))
+= (Fraction Multiply)
+((sin(x) * 1) / cos(x))
+= (Simplify
+(sin(x) / cos(x))
+= (Def. TAN)
+tan(x)
+---
+QED
+
+?-prove([csc(x),/,sec(x)], cot(x), 8).
+THEOREM: (csc(x) / sec(x)) = cot(x)
+PROOF:
+(csc(x) / sec(x))
+= (By Def. of SEC)
+(csc(x) * cos(x))
+= (Commutative)
+(cos(x) * csc(x))
+= (Def. CSC).
+(cos(x) * (1 / sin(x)))
+= (Commutative)
+((1 / sin(x)) * cos(x))
+= (Fraction Equivalence)
+((1 * cos(x)) / sin(x))
+= (Fraction Multiply)
+(1 * (cos(x) / sin(x)))
+= (Simplify
+(cos(x) / sin(x))
+= (Alt. Def. COT).
+cot(x)
+---
+QED
+
+?-prove([[1,+,cos(x)],*,[1,-,cos(x)]], [sin(x),^,2], 6).
+THEOREM: ((1 + cos(x)) * (1 - cos(x))) = (sin(x) ^ 2)
+PROOF:
+((1 + cos(x)) * (1 - cos(x)))
+= (Commutative)
+((1 - cos(x)) * (1 + cos(x)))
+= (FOIL)
+((1 * 1) + (1 * cos(x)) - (cos(x) * 1) - (cos(x) * cos(x)))
+= (Simplify)
+(1 - (cos(x) * cos(x)))
+= (Pythag. Ident.)
+(((sin(x) ^ 2) + (cos(x) ^ 2)) - (cos(x) * cos(x)))
+= (Def. Square)
+(((sin(x) ^ 2) + (cos(x) * cos(x))) - (cos(x) * cos(x)))
+= (Simplify)
+(sin(x) ^ 2)
+---
+QED
+
+?-prove([[cos(x),^,2],-,[sin(x),^,2]], [[2,*,[cos(x),^,2]],-,1], 5).
+THEOREM: ((cos(x) ^ 2) - (sin(x) ^ 2)) = ((2 * (cos(x) ^ 2)) - 1)
+PROOF:
+((cos(x) ^ 2) - (sin(x) ^ 2))
+= (Inverted SEC).
+((1 / (sec(x) ^ 2)) - (sin(x) ^ 2))
+= (Since sin(x)^2 + cos(x)^2 = 1)
+((1 / (sec(x) ^ 2)) - (1 - (cos(x) ^ 2)))
+= (Simplify)
+((cos(x) ^ 2) + (1 / (sec(x) ^ 2)) - 1)
+= (Inverted SEC).
+((cos(x) ^ 2) + (cos(x) ^ 2) - 1)
+= (Simplify)
+((2 * (cos(x) ^ 2)) - 1)
+---
+QED
+
+?-prove([[cos(x),^,2],*,[[sec(x),^,2],-,1]], [sin(x),^,2], 7).
+THEOREM: ((cos(x) ^ 2) * ((sec(x) ^ 2) - 1)) = (sin(x) ^ 2)
+PROOF:
+((cos(x) ^ 2) * ((sec(x) ^ 2) - 1))
+= (Commutative)
+(((sec(x) ^ 2) - 1) * (cos(x) ^ 2))
+= (Distribute)
+(((sec(x) ^ 2) * (cos(x) ^ 2)) - (1 * (cos(x) ^ 2)))
+= (Simplify)
+(((sec(x) ^ 2) * (cos(x) ^ 2)) - (cos(x) ^ 2))
+= (Commutative)
+(((cos(x) ^ 2) * (sec(x) ^ 2)) - (cos(x) ^ 2))
+= (Inverted SEC).
+(((1 / (sec(x) ^ 2)) * (sec(x) ^ 2)) - (cos(x) ^ 2))
+= (Simplify)
+(1 - (cos(x) ^ 2))
+= (Since sin(x)^2 + cos(x)^2 = 1)
+(sin(x) ^ 2)
+---
+QED
+
+?-prove([[tan(x),+,cot(x)],*,tan(x)], [sec(x),^,2], 7).
+THEOREM: ((tan(x) + cot(x)) * tan(x)) = (sec(x) ^ 2)
+PROOF:
+((tan(x) + cot(x)) * tan(x))
+= (Commutative)
+(tan(x) * (tan(x) + cot(x)))
+= (Distribute)
+((tan(x) * tan(x)) + (tan(x) * cot(x)))
+= (Commutative)
+((tan(x) * cot(x)) + (tan(x) * tan(x)))
+= (Def. COT).
+((tan(x) * (1 / tan(x))) + (tan(x) * tan(x)))
+= (Simplify)
+(1 + (tan(x) * tan(x)))
+= (Def. Square)
+(1 + (tan(x) ^ 2))
+= (Pythag. Ident.)
+(sec(x) ^ 2)
+---
+QED
+
+?-prove([[sin(x),/,csc(x)],+,[cos(x),/,sec(x)]], 1, 7).
+THEOREM: ((sin(x) / csc(x)) + (cos(x) / sec(x))) = 1
+PROOF:
+((sin(x) / csc(x)) + (cos(x) / sec(x)))
+= (Commutative)
+((cos(x) / sec(x)) + (sin(x) / csc(x)))
+= (By Def. of SEC)
+((cos(x) * cos(x)) + (sin(x) / csc(x)))
+= (Simplify)
+((sin(x) / csc(x)) + (cos(x) * cos(x)))
+= (By Def. of CSC)
+((sin(x) * sin(x)) + (cos(x) * cos(x)))
+= (Def. Square)
+((sin(x) ^ 2) + (cos(x) * cos(x)))
+= (Def. Square)
+((sin(x) ^ 2) + (cos(x) ^ 2))
+= (Pythag. Ident.)
+1
+---
+QED
+
+?-prove([1,-,[2,*,[sin(x),^,2]]],[[2,*,[cos(x),^,2]],-,1], 7).
+THEOREM: (1 - (2 * (sin(x) ^ 2))) = ((2 * (cos(x) ^ 2)) - 1)
+PROOF:
+(1 - (2 * (sin(x) ^ 2)))
+= (Pythag. Ident.)
+(((sin(x) ^ 2) + (cos(x) ^ 2)) - (2 * (sin(x) ^ 2)))
+= (Simplify)
+((cos(x) ^ 2) - (sin(x) ^ 2))
+= (Inverted SEC).
+((1 / (sec(x) ^ 2)) - (sin(x) ^ 2))
+= (Since sin(x)^2 + cos(x)^2 = 1)
+((1 / (sec(x) ^ 2)) - (1 - (cos(x) ^ 2)))
+= (Simplify)
+((cos(x) ^ 2) + (1 / (sec(x) ^ 2)) - 1)
+= (Inverted SEC).
+((cos(x) ^ 2) + (cos(x) ^ 2) - 1)
+= (Simplify)
+((2 * (cos(x) ^ 2)) - 1)
+---
+QED
+
+?-prove([[1,+,sin(x)],*,[1,-,sin(x)]], [1,/,[sec(x),^,2]], 5).
+THEOREM: ((1 + sin(x)) * (1 - sin(x))) = (1 / (sec(x) ^ 2))
+PROOF:
+((1 + sin(x)) * (1 - sin(x)))
+= (FOIL)
+((1 * 1) - (1 * sin(x)) + (sin(x) * 1) - (sin(x) * sin(x)))
+= (Simplify)
+(1 - (sin(x) * sin(x)))
+= (Def. Square)
+(1 - (sin(x) ^ 2))
+= (Since sin(x)^2 + cos(x)^2 = 1)
+(cos(x) ^ 2)
+= (Inverted SEC).
+(1 / (sec(x) ^ 2))
+---
+QED
+
+?-prove([sec(x),-,cos(x)], [tan(x),*,sin(x)], 8).
+THEOREM: (sec(x) - cos(x)) = (tan(x) * sin(x))
+PROOF:
+(sec(x) - cos(x))
+= (Def. SEC).
+((1 / cos(x)) - cos(x))
+= (Pythag. Ident.)
+((((sin(x) ^ 2) + (cos(x) ^ 2)) / cos(x)) - cos(x))
+= (Fraction Equivalence)
+((((sin(x) ^ 2) / cos(x)) + ((cos(x) ^ 2) / cos(x))) - cos(x))
+= (Def. Square)
+((((sin(x) * sin(x)) / cos(x)) + ((cos(x) ^ 2) / cos(x))) - cos(x))
+= (Fraction Equivalence)
+((((sin(x) / cos(x)) * sin(x)) + ((cos(x) ^ 2) / cos(x))) - cos(x))
+= (Def. TAN)
+(((tan(x) * sin(x)) + ((cos(x) ^ 2) / cos(x))) - cos(x))
+= (Division)
+(((tan(x) * sin(x)) + cos(x)) - cos(x))
+= (Simplify)
+(tan(x) * sin(x))
+---
+QED
+
+?-prove([[sin(x),+,cos(x)],/,cos(x)], [1,+,tan(x)], 5).
+THEOREM: ((sin(x) + cos(x)) / cos(x)) = (1 + tan(x))
+PROOF:
+((sin(x) + cos(x)) / cos(x))
+= (Fraction Equivalence)
+((sin(x) / cos(x)) + (cos(x) / cos(x)))
+= (Commutative)
+((cos(x) / cos(x)) + (sin(x) / cos(x)))
+= (Simplify
+(1 + (sin(x) / cos(x)))
+= (Def. TAN)
+(1 + tan(x))
+---
+QED
+
+?-prove([[1,+,[cos(x),^,2]],/,[sin(x),^,2]], [[2,*,[csc(x),^,2]],-,1], 5).
+THEOREM: ((1 + (cos(x) ^ 2)) / (sin(x) ^ 2)) = ((2 * (csc(x) ^ 2)) - 1)
+PROOF:
+((1 + (cos(x) ^ 2)) / (sin(x) ^ 2))
+= (Fraction Equivalence)
+((1 / (sin(x) ^ 2)) + ((cos(x) ^ 2) / (sin(x) ^ 2)))
+= (Def. CSC).
+((csc(x) ^ 2) + ((cos(x) ^ 2) / (sin(x) ^ 2)))
+= (Def. CSC).
+((csc(x) ^ 2) + (cot(x) ^ 2))
+= (Since csc(x)^2 = cot(x)^2 + 1)
+((csc(x) ^ 2) + ((csc(x) ^ 2) - 1))
+= (Simplify)
+((2 * (csc(x) ^ 2)) - 1)
+---
+QED
