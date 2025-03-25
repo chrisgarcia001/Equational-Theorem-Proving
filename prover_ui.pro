@@ -3,8 +3,8 @@
 
 % This is the top-level predicate for proving a theorem and pretty-printing. Calls 
 % the derive predicate (in derivation_engine.pro) to generate the proof.
-% Predicate form: print_proof(LHS, RHS, MaxSteps)
-print_proof(LHS, RHS, MaxSteps):-
+% Predicate form: prove(LHS, RHS, MaxSteps)
+prove(LHS, RHS, MaxSteps):-
 	derive(LHS, RHS, MaxSteps, P),
 	exp_to_string(LHS, L),
 	exp_to_string(RHS, R),
