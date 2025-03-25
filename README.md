@@ -5,9 +5,9 @@ This repository contains a small Prolog-based equational theorem proving system.
 
 This system is able to generate equational proofs using the user-defined term rewriting rules. A theorem prover consists of three components:
 
-1. The Reasoning Engine (derivation.pro): This core component produces the equational proofs.
-2. The Term Rewriting Ruleset (see, for example, tiny_ruleset.pro): This is a Prolog file that specifies the rewriting rules to be used.
-3. The User Interface (prover_ui.pro): This receives input from the user and then formats and prints the resulting proofs.
+1. The Reasoning Engine ([derivation.pro](./derivation.pro)): This core component produces the equational proofs.
+2. The Term Rewriting Ruleset (see, for example, [tiny_ruleset.pro](./tiny_ruleset.pro)): This is a Prolog file that specifies the rewriting rules to be used.
+3. The User Interface ([prover_ui.pro](./tiny_ruleset.pro)): This receives input from the user and then formats and prints the resulting proofs.
 
 The theorem prover architecture is depicted below:
 
