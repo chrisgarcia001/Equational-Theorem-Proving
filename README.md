@@ -11,7 +11,7 @@ A theorem prover consists of three components:
 
 The theorem prover architecture is depicted below:
 
-![Figure 1: Theorem prover architecture](./images/prover-architecture.jpg)
+![Figure 1: Theorem prover architecture](./images/prover-architecture.jpg "Theorem prover architecture")
 
 Users can interact with the system in the Prolog command prompt via the top-level predicate *prove*, which has the following form:
 
