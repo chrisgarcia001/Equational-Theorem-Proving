@@ -1,0 +1,47 @@
+?-consult('derivation_engine.pro').
+true. 
+ 
+?-consult('tiny_ruleset.pro').
+true. 
+ 
+?-consult('prover_ui.pro').
+true. 
+
+?-prove([[c,*,a],-,[a,*,c]], 0, 6).
+THEOREM: ((c * a) - (a * c)) = 0
+PROOF:
+((c * a) - (a * c))
+= (Commutative)
+((a * c) - (a * c))
+= (By Definition)
+0
+---
+QED
+ 
+?-prove([[a,+,b],*,[c,+,d]], [[d,+,c],*,[b,+,a]], 6).
+THEOREM: ((a + b) * (c + d)) = ((d + c) * (b + a))
+PROOF:
+((a + b) * (c + d))
+= (Commutative)
+((c + d) * (a + b))
+= (Commutative)
+((d + c) * (a + b))
+= (Commutative)
+((d + c) * (b + a))
+---
+QED
+ 
+?-prove([[c,*,a],-,[b,*,a]], [[c,-,b],*,a], 6).
+THEOREM: ((c * a) - (b * a)) = ((c - b) * a)
+PROOF:
+((c * a) - (b * a))
+= (Commutative)
+((a * c) - (b * a))
+= (Commutative)
+((a * c) - (a * b))
+= (Factor)
+(a * (c - b))
+= (Commutative)
+((c - b) * a)
+---
+QED
