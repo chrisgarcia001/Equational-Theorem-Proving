@@ -1,11 +1,11 @@
 # Equational-Theorem-Proving
 A Small Prolog Equational Theorem Proving System With Two Demo Theorem Provers
 
-This repository contains a small Prolog-based equational theorem proving system. Based on term rewriting, this system facilitates theorem proving by equational transformation based on user-defined term rewriting rules. A term rewriting rule specifes a left-hand side (LHS) and a right-hand (RHS) side together with a rule name. Expressions matching the LHS can be replaced with the corresponding RHS. Expressions are represented as Prolog lists. For example, the expression *a + b* would be represented as `[a, +, b]`.
+This repository contains a small Prolog-based equational theorem proving system. Based on term rewriting, this system facilitates theorem proving by equational transformation based on user-defined term rewriting rules. A term rewriting rule specifes a left-hand side (LHS) and a right-hand (RHS) side together with a rule name. Expressions matching the LHS can be replaced with the corresponding RHS. Expressions are represented as Prolog lists. For example, the expression *a + b* is represented as `[a, +, b]`.
 
-This system is able to generate equational proofs using the user-defined term rewriting rules. A theorem prover consists of three components:
+A theorem prover consists of three components:
 
-1. The Reasoning Engine ([derivation.pro](./derivation.pro)): This core component produces the equational proofs.
+1. The Reasoning Engine ([derivation_engine.pro](./derivation_engine.pro)): This core component produces the equational proofs.
 2. A Term Rewriting Ruleset (see, for example, [tiny_ruleset.pro](./tiny_ruleset.pro)): This is a Prolog file that specifies the rewriting rules to be used.
 3. The User Interface ([prover_ui.pro](./tiny_ruleset.pro)): This receives input from the user and then formats and prints the resulting proofs.
 
