@@ -16,7 +16,7 @@ derive(X,Y,N,[X,R|D],Tabu):- not(in_tabu_list(Tabu,X)), N>1, M is N-1,
 			     rewrite(X,Z,R), add_tabu_list(Tabu,X,NewTabu),
 			     derive(Z,Y,M,D,NewTabu), !.
 
-% Tabu List Predicates (Implemented using normal lists for portability - can be faster with other data structures)
+% Tabu List Predicates
 new_tabu_list([]).
 in_tabu_list(TabuList, X):- member(X, TabuList).
 add_tabu_list(TabuList, X, [X|TabuList]).
