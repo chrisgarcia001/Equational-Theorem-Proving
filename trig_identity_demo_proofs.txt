@@ -229,7 +229,7 @@ PROOF:
 ((sin(x) / cos(x)) + (cos(x) / cos(x)))
 = (Commutative)
 ((cos(x) / cos(x)) + (sin(x) / cos(x)))
-= (Simplify
+= (Simplify)
 (1 + (sin(x) / cos(x)))
 = (Def. TAN)
 (1 + tan(x))
