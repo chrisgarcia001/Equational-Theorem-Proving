@@ -1,5 +1,5 @@
 # Equational-Theorem-Proving
-A Small Prolog Equational Theorem Proving System With Two Demo Theorem Provers
+A Small Prolog Equational Theorem Proving System
 
 This repository contains a small Prolog-based equational theorem proving system. Based on term rewriting, this system facilitates theorem proving by equational transformation based on user-defined term rewriting rules. A term rewriting rule specifes a left-hand side (LHS) and a right-hand (RHS) side together with a rule name. Expressions matching the LHS can be replaced with the corresponding RHS. Expressions are represented as Prolog lists. For example, the expression *a + b* is represented as `[a, +, b]`.
 
