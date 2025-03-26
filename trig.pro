@@ -4,14 +4,14 @@
 % The rr predicate is a shorthand one-way rewrite rule
 % Predicate Form: rr(LHS, RHS, RuleName)
 rr([X,*,[1,/,X]], 1, "= (Simplify)").
-rr([X,/,X], 1, "= (Simplify").
-rr([1,*,X], X, "= (Simplify").
-rr([X,*,1], X, "= (Simplify").
-rr([X,/,1], X, "= (Simplify").
-rr([X,+,0], X, "= (Simplify").
-rr([0,+,X], X, "= (Simplify").
-rr([X,-,X], 0, "= (Simplify").
-rr([-X,+,X],0, "= (Simplify").
+rr([X,/,X], 1, "= (Simplify)").
+rr([1,*,X], X, "= (Simplify)").
+rr([X,*,1], X, "= (Simplify)").
+rr([X,/,1], X, "= (Simplify)").
+rr([X,+,0], X, "= (Simplify)").
+rr([0,+,X], X, "= (Simplify)").
+rr([X,-,X], 0, "= (Simplify)").
+rr([-X,+,X],0, "= (Simplify)").
 rr([[X,^,2],/,X], X, "= (Division)").
 rr([A,+,B], [B,+,A], "= (Commutative)").
 rr([A,*,B], [B,*,A], "= (Commutative)").
