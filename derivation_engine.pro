@@ -1,4 +1,3 @@
-vation_engine.pro
 % Term Rewriting Predicates 
 % Predicate Form: rewrite(LHS, RHS, RuleName)
 rewrite(X,Y,R):- rewrite_rule(X,Y,R).
