@@ -31,7 +31,7 @@ PROOF:
 (sin(x) * (1 / cos(x)))
 = (Fraction Multiply)
 ((sin(x) * 1) / cos(x))
-= (Simplify
+= (Simplify)
 (sin(x) / cos(x))
 = (Def. TAN)
 tan(x)
@@ -54,7 +54,7 @@ PROOF:
 ((1 * cos(x)) / sin(x))
 = (Fraction Multiply)
 (1 * (cos(x) / sin(x)))
-= (Simplify
+= (Simplify)
 (cos(x) / sin(x))
 = (Alt. Def. COT).
 cot(x)
